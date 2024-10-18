@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Update Etudiant{% endblock %}
+
+{% block body %}
+    <h1>Update Etudiant</h1>
+
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button type="submit" class="btn btn-primary">Update Etudiant</button>
+    {{ form_end(form) }}
+
+    <a href="{{ path('data_app') }}" class="btn btn-secondary">Back to List</a>
+{% endblock %}

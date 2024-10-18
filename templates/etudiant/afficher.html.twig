@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Etudiant List{% endblock %}
+
+{% block body %}
+    <h1>Etudiant List</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for etudiant in list %}
+                <tr>
+                    <td>{{ etudiant.id }}</td>
+                    <td>{{ etudiant.nom }}</td>
+                    <td>{{ etudiant.prenom }}</td>
+                    <td>{{ etudiant.email }}</td>
+                    <td>
+                        <a href="{{ path('etudiant_update', {'id': etudiant.id}) }}" class="btn btn-warning">Update</a>
+                        <form action="{{ path('app_delete', {'id': etudiant.id}) }}" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this etudiant?');">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="5">No etudiants found.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('etudiant_add') }}" class="btn btn-primary">Add New Etudiant</a>
+{% endblock %}
